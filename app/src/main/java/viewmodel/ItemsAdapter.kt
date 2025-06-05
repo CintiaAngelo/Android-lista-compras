@@ -1,13 +1,15 @@
-package viewmodel
+package CintiaAngelo.com.github.android_lista_de_compras.viewmodel
 
+
+import CintiaAngelo.com.github.android_lista_de_compras.R
+import CintiaAngelo.com.github.listadecompras.model.ItemModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import CintiaAngelo.com.github.android_lista_de_compras.R
-import CintiaAngelo.com.github.listadecompras.model.ItemModel
+
 
 /**
  * Uma classe Adapter que estende RecyclerView.Adapter. Esta classe é responsável por fornecer os dados e criar cada item na lista.
