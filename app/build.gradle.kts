@@ -28,17 +28,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        // Isso está CORRETO agora, com Gradle 8.9 e Java 17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        // Isso está CORRETO agora
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10" // Compatible with Kotlin 1.9.22
     }
     packaging {
         resources {
@@ -48,7 +51,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -64,17 +66,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.google.material)
 
+    // AINDA PRECISAM SER ATUALIZADAS E MOVIDAS PARA libs.versions.toml
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1") // Atualize para 2.8.0
+    implementation("androidx.recyclerview:recyclerview:1.3.2")       // Atualize para 1.3.4
+    implementation("androidx.appcompat:appcompat:1.4.1")           // Atualize para 1.7.0
+    implementation("androidx.activity:activity-ktx:1.7.0")         // Atualize para 1.9.0
 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    // ROOM: Versões 2.6.1 estão corretas! (Parabéns por atualizar!)
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1") // O ktx estava 2.4.1, agora está 2.6.1, correto!
 
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("androidx.activity:activity-ktx:1.7.0")
-
-    implementation("androidx.room:room-runtime:2.4.1")
-    kapt("androidx.room:room-compiler:2.4.1")
-    implementation("androidx.room:room-ktx:2.4.1")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    // KOTLIN COROUTINES: AINDA PRECISA SER ATUALIZADA E MOVIDA PARA libs.versions.toml
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2") // Atualize para 1.8.1
 }
